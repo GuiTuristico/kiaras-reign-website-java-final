@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto | Kiaras Reign - Tu Reino de Productos Premium para Bebés</title>
+    <meta name="description" content="Contacta con Kiaras Reign para consultas sobre productos ecológicos para bebés. Asesoramiento experto, atención personalizada y soporte completo.">
+    <meta name="keywords" content="contacto Kiaras Reign, asesoramiento bebés, productos ecológicos, atención cliente, Rey León, soporte">
+    <meta name="author" content="Kiaras Reign Baby Shop">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Contacto | Kiaras Reign">
+    <meta property="og:description" content="Contacta con nuestros expertos en productos premium para bebés">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kiarasreign.com/contacto">
+    <meta property="og:image" content="https://kiarasreign.com/images/contacto-og.jpg">
+    
+    <link rel="canonical" href="https://kiarasreign.com/contacto">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+   
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" >
+   
+    <!-- Google Maps API -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8zC5cdGs7YTNVB9ln7GXtr52XA6IFSYc&callback=initMap&libraries=places"></script>
+
+
+    <style>
+        .map-wrapper {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .map-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .map-controls {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .map-controls input {
+            flex: 1;
+            min-width: 200px;
+            margin: 0;
+        }
+
+        .map-controls button {
+            white-space: nowrap;
+            margin: 0;
+        }
+
+        .route-info {
+            position: absolute;
+            bottom: 80px;
+            left: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+            z-index: 1000;
+        }
+
+        .route-info h4 {
+            margin: 0 0 10px 0;
+            color: var(--brown-savana);
+            font-size: 16px;
+        }
+
+        .route-info p {
+            margin: 5px 0;
+            font-weight: 500;
+        }
+
+        .map-overlay {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            max-width: 300px;
+        }
+
+        .map-info h3 {
+            margin-bottom: var(--spacing-sm);
+            color: var(--brown-savana);
+        }
+
+        .map-info-simple {
+            margin-top: 20px;
+            padding: 20px;
+            background: var(--bg-accent);
+            border-radius: 12px;
+        }
+
+        .map-info-simple h3 {
+            margin: 0 0 15px 0;
+            color: var(--brown-savana);
+        }
+
+        .map-info-simple p {
+            margin: 5px 0;
+        }
+
+        .map-features {
+            margin: var(--spacing-md) 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            margin-bottom: var(--spacing-xs);
+            font-size: var(--text-sm);
+        }
+
+        .feature-tag {
+            display: inline-block;
+            background: var(--golden-kiara);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            margin: 2px;
+        }
+
+        .location-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-xl);
+        }
+
+        .success-message {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+        }
+
+        .success-content {
+            background: var(--bg-primary);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            text-align: center;
+            box-shadow: var(--shadow-xl);
+            max-width: 400px;
+        }
+
+        .success-icon {
+            font-size: var(--text-5xl);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .faq-item {
+            border: 1px solid var(--cream);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--spacing-md);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: var(--spacing-lg);
+            background: var(--bg-accent);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all var(--transition-normal);
+        }
+
+        .faq-question:hover {
+            background: var(--cream);
+        }
+
+        .faq-question h3 {
+            margin: 0;
+            font-size: var(--text-lg);
+        }
+
+        .faq-toggle {
+            font-size: var(--text-2xl);
+            font-weight: bold;
+            color: var(--golden-kiara);
+        }
+
+        .faq-answer {
+            padding: 0 var(--spacing-lg);
+            max-height: 0;
+            overflow: hidden;
+            transition: all var(--transition-normal);
+        }
+
+        .faq-item.active .faq-answer {
+            padding: var(--spacing-lg);
+            max-height: 500px;
+        }
+
+        @media (max-width: 768px) {
+            .location-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .map-overlay {
+                position: static;
+                margin-top: var(--spacing-md);
+                max-width: none;
+            }
+
+            .map-controls {
+                position: static;
+                margin-bottom: 10px;
+                flex-direction: column;
+            }
+
+            .map-controls input,
+            .map-controls button {
+                width: 100%;
+                min-width: auto;
+            }
+
+            .route-info {
+                position: static;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Principal -->
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="nav-container">
+              <div class="logo">
+  <div class="logo-icon">
+    <img src="../images/logo.png" width="1241" height="570" alt="Kiaras Reign - El Reino de la Pequeña Kiara" class="logo-image">
+  </div>
+  <div class="logo-text">
+    <span class="tagline">El Reino de la Pequeña Kiara</span>
+  </div>
+</div>
+
+                <ul class="nav-menu">
+                    <li><a href="../index.html" class="nav-link">🏠 Inicio</a></li>
+                    <li><a href="productos.html" class="nav-link">🛍️ Productos</a></li>
+                    <li><a href="galeria.html" class="nav-link">📸 Galería</a></li>
+                    <li><a href="presupuesto.html" class="nav-link">💰 Presupuesto</a></li>
+                    <li><a href="contacto.html" class="nav-link active">📞 Contacto</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="main-content">
+        <!-- Hero de Contacto -->
+        <section class="contact-hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="section-badge">📞 Estamos Aquí para Ayudarte</div>
+                    <h1 class="hero-title">
+                        Conecta con el Reino de 
+                        <span class="text-gradient">Kiara</span>
+                    </h1>
+                    <p class="hero-description">
+                        Nuestro equipo de expertos está disponible para ayudarte a encontrar los productos 
+                        perfectos para tu pequeño rey. Ya sea que tengas preguntas sobre nuestros productos 
+                        ecológicos, necesites asesoramiento personalizado o quieras conocer más sobre 
+                        nuestro compromiso con la sostenibilidad, estamos aquí para ti.
+                    </p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-icon">⚡</div>
+                            <div class="stat-text">
+                                <div class="stat-number"> 2h </div>
+                                <div class="stat-label">Tiempo de Respuesta</div>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon">🏆</div>
+                            <div class="stat-text">
+                                <div class="stat-number">98%</div>
+                                <div class="stat-label">Satisfacción</div>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon">👨‍⚕️</div>
+                            <div class="stat-text">
+                                <div class="stat-number">10+</div>
+                                <div class="stat-label">Años Experiencia</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Contacto Principal -->
+        <section class="contact-main-section">
+            <div class="container">
+                <div class="contact-layout">
+                    <!-- Formulario de Contacto -->
+                    <div class="contact-form-container">
+                        <div class="form-header">
+                            <h2 class="form-title">Envíanos un Mensaje</h2>
+                            <p class="form-description">
+                                Completa este formulario y te responderemos lo antes posible. 
+                                Nuestro equipo de expertos está listo para ayudarte.
+                            </p>
+                        </div>
+
+                        <form id="contactForm" class="contact-form" novalidate>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="nombre" class="form-label required">Nombre Completo</label>
+                                    <input type="text" id="nombre" name="nombre" class="form-input" 
+                                           required minlength="2" maxlength="50"
+                                           placeholder="Tu nombre completo"
+                                           autocomplete="name">
+                                    <div class="form-error" id="nombre-error"></div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="email" class="form-label required">Correo Electrónico</label>
+                                    <input type="email" id="email" name="email" class="form-input" 
+                                           required 
+                                           placeholder="tu@email.com"
+                                           autocomplete="email">
+                                    <div class="form-error" id="email-error"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="telefono" class="form-label">Teléfono (Opcional)</label>
+                                    <input type="tel" id="telefono" name="telefono" class="form-input" 
+                                           pattern="[0-9+\-\s\(\)]+" 
+                                           placeholder="+34 (91) 123-4567"
+                                           autocomplete="tel">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="asunto" class="form-label required">Asunto</label>
+                                    <select id="asunto" name="asunto" class="form-select" required>
+                                        <option value="">Selecciona un asunto</option>
+                                        <option value="consulta-producto">Consulta sobre Productos</option>
+                                        <option value="asesoramiento">Asesoramiento Personalizado</option>
+                                        <option value="pedido">Consulta sobre Pedido</option>
+                                        <option value="devolucion">Devolución o Cambio</option>
+                                        <option value="colaboracion">Oportunidades de Colaboración</option>
+                                        <option value="sugerencia">Sugerencias y Feedback</option>
+                                        <option value="otro">Otro</option>
+                                    </select>
+                                    <div class="form-error" id="asunto-error"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="mensaje" class="form-label required">Mensaje</label>
+                                <textarea id="mensaje" name="mensaje" class="form-textarea" 
+                                          rows="6" required minlength="10" maxlength="1000"
+                                          placeholder="Cuéntanos cómo podemos ayudarte. Incluye detalles sobre la edad de tu bebé, productos de interés, o cualquier consulta específica..."></textarea>
+                                <div class="character-count">
+                                    <span id="char-count">0</span>/1000 caracteres
+                                </div>
+                                <div class="form-error" id="mensaje-error"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" id="newsletter" name="newsletter" value="si">
+                                    <span class="checkmark"></span>
+                                    <span class="checkbox-text">
+                                        Quiero recibir consejos exclusivos sobre productos para bebés y ofertas especiales del Reino de Kiara
+                                    </span>
+                                </label>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="checkbox-container required">
+                                    <input type="checkbox" id="privacidad" name="privacidad" value="si" required>
+                                    <span class="checkmark"></span>
+                                    <span class="checkbox-text">
+                                        He leído y acepto la <a href="#" class="link">Política de Privacidad</a> y los 
+                                        <a href="#" class="link">Términos y Condiciones</a> de Kiaras Reign
+                                    </span>
+                                </label>
+                                <div class="form-error" id="privacidad-error"></div>
+                            </div>
+
+                            <div class="form-submit">
+                                <button type="submit" class="btn btn-primary-large" id="submit-btn">
+                                    <span class="btn-text">Enviar Mensaje</span>
+                                    <span class="btn-loading" style="display: none;">
+                                        <span class="spinner"></span>
+                                        Enviando...
+                                    </span>
+                                </button>
+                                <p class="submit-note">
+                                    📧 Te responderemos en menos de 2 horas durante nuestro horario de atención.
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Información de Contacto -->
+                    <div class="contact-info-container">
+                        <div class="info-card">
+                            <div class="card-header">
+                                <h3 class="card-title">
+                                    <span class="card-icon">📍</span>
+                                    Nuestro Reino
+                                </h3>
+                               
+                            </div>
+                            <div class="card-content">
+                                <div class="contact-detail">
+                                    <div class="detail-icon">🏢</div>
+                                    <div class="detail-content">
+                                        <strong>Dirección Principal</strong>
+                                        <p>Av. Premios Nobel, 5, 
+                                            Av. Premios Nobel, 5,<br>
+                                            28850 Torrejón de Ardoz, Madrid
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <div class="contact-detail">
+                                    <div class="detail-icon">📞</div>
+                                    <div class="detail-content">
+                                        <strong>Teléfono</strong>
+                                        <p>+34 (91) 123-4567</p>
+                                        <small>Lun-Vie: 9:00-18:00</small>
+                                    </div>
+                                </div>
+                                
+                                <div class="contact-detail">
+                                    <div class="detail-icon">📧</div>
+                                    <div class="detail-content">
+                                        <strong>Email General</strong>
+                                        <p>hola@kiarasreign.com</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="contact-detail">
+                                    <div class="detail-icon">🛍️</div>
+                                    <div class="detail-content">
+                                        <strong>Ventas y Presupuestos</strong>
+                                        <p>ventas@kiarasreign.com</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="contact-detail">
+                                    <div class="detail-icon">🛠️</div>
+                                    <div class="detail-content">
+                                        <strong>Soporte Técnico</strong>
+                                        <p>soporte@kiarasreign.com</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <div class="card-header">
+                                <h3 class="card-title">
+                                    <span class="card-icon">⏰</span>
+                                    Horarios de Atención
+                                </h3>
+                            </div>
+                            <div class="card-content">
+                                <div class="schedule-item">
+                                    <div class="schedule-day">Lunes - Viernes</div>
+                                    <div class="schedule-time">9:00 - 18:00</div>
+                                </div>
+                                <div class="schedule-item">
+                                    <div class="schedule-day">Sábados</div>
+                                    <div class="schedule-time">10:00 - 14:00</div>
+                                </div>
+                                <div class="schedule-item">
+                                    <div class="schedule-day">Domingos</div>
+                                    <div class="schedule-time">Cerrado</div>
+                                </div>
+                                <div class="schedule-note">
+                                    <strong>Emergencias:</strong> Para consultas urgentes fuera del horario, 
+                                    envíanos un email y te responderemos lo antes posible.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Ubicación -->
+        <section class="location-section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-badge">📍 Nuestra Ubicación</div>
+                    <h2 class="section-title">Visita Nuestro Reino</h2>
+                    <p class="section-description">
+                        Te invitamos a conocer nuestro showroom donde podrás ver, tocar y probar 
+                        todos nuestros productos premium antes de tomar una decisión.
+                    </p>
+                </div>
+                
+                <div class="location-content visit-content">
+            </div>  
+            </div>      
+    <!-- Mapa  -->
+    <div class="info-card map-card">
+        <div class="map-wrapper">
+            <div id="google-map" style="width: 100%; height: 400px;"></div>
+            <div class="map-controls">
+                <button id="get-location-btn" class="btn btn-secondary">📍 Obtener mi ubicación</button>
+                <input type="text" id="destination-input" placeholder="O introduce tu dirección manualmente" class="form-input">
+                <button id="calculate-route-btn" class="btn btn-primary">Calcular Ruta</button>
+                <button id="clear-route-btn" class="btn btn-outline" style="display:none;">Limpiar Ruta</button>
+            </div>
+            <div id="route-info" class="route-info" style="display:none;">
+                <h4>Información de la Ruta:</h4>
+                <p id="route-distance"></p>
+                <p id="route-duration"></p>
+            </div>
+
+            <div class="map-info-simple">
+                <h3>🗺️ Mapa Interactivo</h3>
+                <p><strong>Kiaras Reign - El Reino de la Pequeña Kiara</strong></p>
+                <p>Av. Premios Nobel, 5, 28850 Torrejón de Ardoz, Madrid</p>
+                <div class="map-features">
+                    <span class="feature-tag">🚗 Parking gratuito</span>
+                    <span class="feature-tag">🚇 Metro: Línea 1, 2</span>
+                    <span class="feature-tag">🚌 Autobús: 15, 27, 45</span>
+                </div>
+                <a href="https://www.google.com/maps/dir/40.4857366,-3.686292/Av.+Premios+Nobel,+5,+28850+Torrej%C3%B3n+de+Ardoz,+Madrid/@40.4795334,-3.6559896,12z/data=!3m1!4b1!4m10!4m9!1m1!4e1!1m5!1m1!1s0xd42364fbb44a727:0x553923a46f74e2b9!2m2!1d-3.4480143!2d40.4697006!3e0?entry=ttu&g_ep=EgoyMDI1MDczMC4wIKXMDSoASAFQAw%3D%3D"
+                 target="_blank" class="btn btn-secondary map-button">
+                    📍 Ver en Google Maps
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Showroom -->
+    <div class="info-card showroom-card">
+        <h3 class="info-title">
+            <span class="info-icon">🏪</span>
+            Nuestro Showroom
+        </h3>
+        <p>
+            Nuestro showroom de 200m² está diseñado como un verdadero reino donde 
+            podrás experimentar todos nuestros productos en un ambiente acogedor 
+            y familiar. Contamos con:
+        </p>
+        <ul class="info-list">
+            <li>✓ Zona de pruebas para productos</li>
+            <li>✓ Área de lactancia privada</li>
+            <li>✓ Espacio de juegos para niños</li>
+            <li>✓ Asesoramiento personalizado</li>
+            <li>✓ Cafetería con productos orgánicos</li>
+        </ul>
+    </div>
+
+    <!-- Cómo llegar  -->
+    <div class="info-card directions-card">
+        <h3 class="info-title">
+            <span class="info-icon">🚗</span>
+            Cómo Llegar
+        </h3>
+        <div class="transport-options">
+            <div class="transport-item">
+                <div class="transport-icon">🚗</div>
+                <div class="transport-content">
+                    <strong>En Coche</strong>
+                    <p>Parking gratuito para clientes. Entrada por Calle Secundaria, 45.</p>
+                </div>
+            </div>
+            <div class="transport-item">
+                <div class="transport-icon">🚇</div>
+                <div class="transport-content">
+                    <strong>En Metro</strong>
+                    <p>Estación "Reino Central" (L1, L2). 3 minutos caminando.</p>
+                </div>
+            </div>
+            <div class="transport-item">
+                <div class="transport-icon">🚌</div>
+                <div class="transport-content">
+                    <strong>En Autobús</strong>
+                    <p>Líneas 15, 27, 45. Parada "Sabana Real".</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reserva tu visita  -->
+    <div class="info-card booking-card">
+        <h3 class="info-title">
+            <span class="info-icon">📅</span>
+            Reserva tu Visita
+        </h3>
+        <p>
+            Para una atención más personalizada, te recomendamos reservar tu visita. 
+            Así podremos preparar los productos que más te interesen y dedicarte 
+            el tiempo que necesites.
+        </p>
+        <div class="visit-actions">
+            <a href="presupuesto.html" class="btn btn-primary">
+                📅 Reservar Cita
+            </a>
+            <a href="tel:+34911234567" class="btn btn-secondary">
+                📞 Llamar Ahora
+            </a>
+        </div>
+    </div>
+
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-badge">❓ Preguntas Frecuentes</div>
+                    <h2 class="section-title">Resolvemos tus Dudas</h2>
+                    <p class="section-description">
+                        Encuentra respuestas a las preguntas más comunes sobre nuestros productos, 
+                        servicios y políticas del Reino de Kiara.
+                    </p>
+                </div>
+                
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>¿Todos los productos son realmente ecológicos?</h3>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>
+                                Sí, el 100% de nuestros productos están fabricados con materiales naturales, 
+                                orgánicos y sostenibles. Contamos con certificaciones internacionales como 
+                                GOTS (Global Organic Textile Standard), FSC (Forest Stewardship Council) 
+                                y OEKO-TEX que garantizan la ausencia de químicos nocivos y el respeto 
+                                por el medio ambiente.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>¿Qué garantías ofrecen sobre la seguridad de los productos?</h3>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>
+                                Todos nuestros productos cumplen y superan las normativas europeas de 
+                                seguridad infantil (EN71, CE). Realizamos pruebas adicionales de 
+                                laboratorio independiente y ofrecemos garantía de satisfacción de 30 días. 
+                                Si no estás completamente satisfecho, te devolvemos tu dinero.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>¿Hacen envíos internacionales?</h3>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>
+                                Actualmente realizamos envíos a toda España y Portugal. Estamos trabajando 
+                                para expandir nuestros servicios a otros países europeos. El envío es 
+                                gratuito para pedidos superiores a €50 y utilizamos embalaje 100% 
+                                reciclable y biodegradable.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>¿Ofrecen asesoramiento personalizado?</h3>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>
+                                ¡Por supuesto! Nuestro equipo de especialistas en productos infantiles 
+                                está disponible para asesorarte de forma personalizada. Puedes solicitar 
+                                una consulta gratuita por teléfono, email o visitando nuestro showroom. 
+                                También ofrecemos presupuestos personalizados según las necesidades 
+                                específicas de tu bebé.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>¿Cuál es la política de devoluciones?</h3>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>
+                                Ofrecemos 30 días para devoluciones sin preguntas. Los productos deben 
+                                estar en su estado original y con el embalaje. Nosotros nos encargamos 
+                                de la recogida gratuita y el reembolso se procesa en 3-5 días hábiles. 
+                                Para productos personalizados, consulta nuestras condiciones especiales.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>¿Tienen programa de fidelidad o descuentos?</h3>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>
+                                Sí, nuestro programa "Reino VIP" ofrece descuentos progresivos, acceso 
+                                prioritario a nuevos productos, invitaciones a eventos exclusivos y 
+                                asesoramiento gratuito ilimitado. También ofrecemos descuentos especiales 
+                                para familias numerosas y programas de fidelidad para compras recurrentes.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <div class="logo-icon"><img src="../images/logo.png" width="1241" height="570" alt="Kiaras Reign" class="footer-logo-image"></div>
+                        <div class="logo-text">
+                            <span>El Reino de la Pequeña Kiara</span>
+                        </div>
+                    </div>
+                    <p class="footer-description">
+                        Productos premium y ecológicos para bebés, inspirados en los valores 
+                        de El Rey León. Calidad, seguridad y sostenibilidad para los pequeños reyes.
+                    </p>
+                    <div class="footer-social">
+                         <a href="#" class="social-icon-link" aria-label="Facebook">
+                             <i class="fab fa-facebook-f"></i>
+                         </a>
+                         <a href="#" class="social-icon-link" aria-label="Instagram">
+                             <i class="fab fa-instagram"></i>
+                         </a>
+                         <a href="#" class="social-icon-link" aria-label="TikTok">
+                             <i class="fab fa-tiktok"></i>
+                         </a>
+                         <a href="#" class="social-icon-link" aria-label="YouTube">
+                             <i class="fab fa-youtube"></i>
+                         </a>
+                         <a href="#" class="social-icon-link" aria-label="Pinterest">
+                             <i class="fab fa-pinterest"></i>
+                         </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Navegación Rápida</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="productos.html">Productos</a></li>
+                        <li><a href="galeria.html">Galería</a></li> 
+                        <li><a href="presupuesto.html">Presupuesto</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Categorías del Reino</h4>
+                    <ul class="footer-links">
+                        <li><a href="productos.html">Peluches Orgánicos</a></li>
+                        <li><a href="productos.html">Ropa Ecológica</a></li>
+                        <li><a href="productos.html">Alimentación Natural</a></li>
+                        <li><a href="productos.html">Descanso Seguro</a></li>
+                        <li><a href="productos.html">Juguetes Educativos</a></li>
+                        <li><a href="productos.html">Cuidado Personal</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Información Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Política de Privacidad</a></li>
+                        <li><a href="#">Términos y Condiciones</a></li>
+                        <li><a href="#">Aviso Legal</a></li>
+                        <li><a href="#">Política de Devoluciones</a></li>
+                        <li><a href="#">Envíos y Entregas</a></li>
+                        <li><a href="#">Compromiso Ecológico</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 Kiaras Reign - El Reino de la Pequeña Kiara. Todos los derechos reservados.</p>
+                    <div class="footer-badges">
+                        <span class="badge">🌿 100% Ecológico</span>
+                        <span class="badge">🛡️ Productos Seguros</span>
+                        <span class="badge">👑 Calidad Premium</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+   <script src="../js/script.js"></script>
+
+   <script>
+        // Variables globales para el mapa
+        let map;
+        let directionsService;
+        let directionsRenderer;
+        let businessLocation = { lat: 40.4697006, lng: -3.4480143 }; // Torrejón de Ardoz
+        let userLocation = null;
+        let businessMarker;
+        let userMarker;
+
+        // Inicializar el mapa
+        function initMap() {
+            console.log('Inicializando mapa...');
+            
+            // Crear el mapa centrado en la ubicación del negocio
+            map = new google.maps.Map(document.getElementById('google-map'), {
+                zoom: 13,
+                center: businessLocation,
+                mapTypeId: 'roadmap'
+            });
+
+            // Inicializar servicios de direcciones
+            directionsService = new google.maps.DirectionsService();
+            directionsRenderer = new google.maps.DirectionsRenderer({
+                draggable: true,
+                panel: null
+            });
+            directionsRenderer.setMap(map);
+
+            // Marcador del negocio
+            businessMarker = new google.maps.Marker({
+                position: businessLocation,
+                map: map,
+                title: 'Kiaras Reign - El Reino de la Pequeña Kiara',
+                icon: {
+                    url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
+                        <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="20" cy="20" r="18" fill="#D4A574" stroke="#8B4513" stroke-width="2"/>
+                            <text x="20" y="26" text-anchor="middle" font-size="16" fill="white">👑</text>
+                        </svg>
+                    `),
+                    scaledSize: new google.maps.Size(40, 40)
+                }
+            });
+
+            // Info window para el negocio
+            const businessInfoWindow = new google.maps.InfoWindow({
+                content: `
+                    <div style="padding: 10px; max-width: 250px;">
+                        <h3 style="margin: 0 0 10px 0; color: #8B4513;">👑 Kiaras Reign</h3>
+                        <p style="margin: 5px 0;"><strong>El Reino de la Pequeña Kiara</strong></p>
+                        <p style="margin: 5px 0;">📍 Av. Premios Nobel, 5<br>28850 Torrejón de Ardoz, Madrid</p>
+                        <p style="margin: 5px 0;">📞 +34 (91) 123-4567</p>
+                        <p style="margin: 5px 0;">⏰ Lun-Vie: 9:00-18:00</p>
+                    </div>
+                `
+            });
+
+            businessMarker.addListener('click', () => {
+                businessInfoWindow.open(map, businessMarker);
+            });
+
+            // Event listeners para los botones
+            setupEventListeners();
+        }
+
+        function setupEventListeners() {
+            const getLocationBtn = document.getElementById('get-location-btn');
+            const calculateRouteBtn = document.getElementById('calculate-route-btn');
+            const clearRouteBtn = document.getElementById('clear-route-btn');
+            const destinationInput = document.getElementById('destination-input');
+
+            if (getLocationBtn) {
+                getLocationBtn.addEventListener('click', getUserLocation);
+            }
+
+            if (calculateRouteBtn) {
+                calculateRouteBtn.addEventListener('click', calculateRoute);
+            }
+
+            if (clearRouteBtn) {
+                clearRouteBtn.addEventListener('click', clearRoute);
+            }
+
+            if (destinationInput) {
+                destinationInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        calculateRoute();
+                    }
+                });
+            }
+        }
+
+        function getUserLocation() {
+            const getLocationBtn = document.getElementById('get-location-btn');
+            
+            if (!navigator.geolocation) {
+                alert('La geolocalización no es compatible con este navegador.');
+                return;
+            }
+
+            getLocationBtn.textContent = '📍 Obteniendo ubicación...';
+            getLocationBtn.disabled = true;
+
+            navigator.geolocation.getCurrentPosition(
+                function(position) {
+                    userLocation = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+
+                    // Crear marcador del usuario
+                    if (userMarker) {
+                        userMarker.setMap(null);
+                    }
+
+                    userMarker = new google.maps.Marker({
+                        position: userLocation,
+                        map: map,
+                        title: 'Tu ubicación',
+                        icon: {
+                            url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
+                                <svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="15" cy="15" r="13" fill="#4285F4" stroke="white" stroke-width="2"/>
+                                    <circle cx="15" cy="15" r="5" fill="white"/>
+                                </svg>
+                            `),
+                            scaledSize: new google.maps.Size(30, 30)
+                        }
+                    });
+
+                    // Info window para el usuario
+                    const userInfoWindow = new google.maps.InfoWindow({
+                        content: `
+                            <div style="padding: 10px;">
+                                <h4 style="margin: 0 0 5px 0;">📍 Tu ubicación</h4>
+                                <p style="margin: 0;">Lat: ${userLocation.lat.toFixed(6)}</p>
+                                <p style="margin: 0;">Lng: ${userLocation.lng.toFixed(6)}</p>
+                            </div>
+                        `
+                    });
+
+                    userMarker.addListener('click', () => {
+                        userInfoWindow.open(map, userMarker);
+                    });
+
+                    // Ajustar vista para mostrar ambos marcadores
+                    const bounds = new google.maps.LatLngBounds();
+                    bounds.extend(businessLocation);
+                    bounds.extend(userLocation);
+                    map.fitBounds(bounds);
+
+                    getLocationBtn.textContent = '✅ Ubicación obtenida';
+                    getLocationBtn.disabled = false;
+
+                    // Calcular ruta automáticamente
+                    calculateRouteFromCoordinates(userLocation, businessLocation);
+                },
+                function(error) {
+                    console.error('Error obteniendo ubicación:', error);
+                    let errorMessage = 'No se pudo obtener tu ubicación. ';
+                    
+                    switch(error.code) {
+                        case error.PERMISSION_DENIED:
+                            errorMessage += 'Permiso denegado. Por favor, permite el acceso a tu ubicación.';
+                            break;
+                        case error.POSITION_UNAVAILABLE:
+                            errorMessage += 'Ubicación no disponible.';
+                            break;
+                        case error.TIMEOUT:
+                            errorMessage += 'Tiempo de espera agotado.';
+                            break;
+                        default:
+                            errorMessage += 'Error desconocido.';
+                            break;
+                    }
+                    
+                    alert(errorMessage);
+                    getLocationBtn.textContent = '📍 Obtener mi ubicación';
+                    getLocationBtn.disabled = false;
+                }
+            );
+        }
+
+        function calculateRoute() {
+            const destinationInput = document.getElementById('destination-input');
+            const address = destinationInput.value.trim();
+
+            if (!address && !userLocation) {
+                alert('Por favor, introduce una dirección o obtén tu ubicación primero.');
+                return;
+            }
+
+            if (address) {
+                // Geocodificar la dirección introducida
+                const geocoder = new google.maps.Geocoder();
+                geocoder.geocode({ address: address }, function(results, status) {
+                    if (status === 'OK') {
+                        const location = results[0].geometry.location;
+                        calculateRouteFromCoordinates(location, businessLocation);
+                    } else {
+                        alert('No se pudo encontrar la dirección introducida. Por favor, verifica la dirección.');
+                    }
+                });
+            } else if (userLocation) {
+                calculateRouteFromCoordinates(userLocation, businessLocation);
+            }
+        }
+
+        function calculateRouteFromCoordinates(origin, destination) {
+            const request = {
+                origin: origin,
+                destination: destination,
+                travelMode: google.maps.TravelMode.DRIVING
+            };
+
+            directionsService.route(request, function(result, status) {
+                if (status === 'OK') {
+                    directionsRenderer.setDirections(result);
+                    
+                    // Mostrar información de la ruta
+                    const route = result.routes[0];
+                    const leg = route.legs[0];
+                    
+                    document.getElementById('route-distance').textContent = `Distancia: ${leg.distance.text}`;
+                    document.getElementById('route-duration').textContent = `Tiempo estimado: ${leg.duration.text}`;
+                    document.getElementById('route-info').style.display = 'block';
+                    document.getElementById('clear-route-btn').style.display = 'inline-block';
+                } else {
+                    console.error('Error calculando ruta:', status);
+                    alert('No se pudo calcular la ruta. Por favor, inténtalo de nuevo.');
+                }
+            });
+        }
+
+        function clearRoute() {
+            directionsRenderer.setDirections({ routes: [] });
+            document.getElementById('route-info').style.display = 'none';
+            document.getElementById('clear-route-btn').style.display = 'none';
+            document.getElementById('destination-input').value = '';
+            
+            if (userMarker) {
+                userMarker.setMap(null);
+                userMarker = null;
+            }
+            
+            userLocation = null;
+            document.getElementById('get-location-btn').textContent = '📍 Obtener mi ubicación';
+            
+            // Volver a centrar en el negocio
+            map.setCenter(businessLocation);
+            map.setZoom(13);
+        }
+
+        // Asegurarse de que initMap esté disponible globalmente
+        window.initMap = initMap;
+    </script>
+    
+</body>
+</html>
+

@@ -1,0 +1,86 @@
+[
+    {
+        "id": "1",
+        "src": "../images/biberón.jpg",
+        "alt": "Biberón ecológico",
+        "category": "alimentacion"
+    },
+    {
+        "id": "2",
+        "src": "../images/bodegón.jpg",
+        "alt": "Bodegón de productos ecológicos",
+        "category": "varios"
+    },
+    {
+        "id": "3",
+        "src": "../images/body.jpg",
+        "alt": "Body de bebé ecológico",
+        "category": "ropa"
+    },
+    {
+        "id": "4",
+        "src": "../images/familia.jpg",
+        "alt": "Familia feliz con productos Kiaras Reign",
+        "category": "varios"
+    },
+    {
+        "id": "5",
+        "src": "../images/móvil.jpg",
+        "alt": "Móvil de cuna ecológico",
+        "category": "juguetes"
+    },
+    {
+        "id": "6",
+        "src": "../images/nala.jpg",
+        "alt": "Peluche Nala orgánico",
+        "category": "peluches"
+    },
+    {
+        "id": "7",
+        "src": "../images/peluche.jpg",
+        "alt": "Peluche orgánico",
+        "category": "peluches"
+    },
+    {
+        "id": "8",
+        "src": "../images/piano.jpg",
+        "alt": "Piano de juguete de madera",
+        "category": "juguetes"
+    },
+    {
+        "id": "9",
+        "src": "../images/puzzle.jpg",
+        "alt": "Puzzle de madera ecológico",
+        "category": "juguetes"
+    },
+    {
+        "id": "10",
+        "src": "../images/ropa.jpg",
+        "alt": "Ropa de bebé orgánica",
+        "category": "ropa"
+    },
+    {
+        "id": "11",
+        "src": "../images/sabana.jpg",
+        "alt": "Sábana de cuna orgánica",
+        "category": "descanso"
+    },
+    {
+        "id": "12",
+        "src": "../images/simba.jpg",
+        "alt": "Peluche Simba orgánico",
+        "category": "peluches"
+    },
+    {
+        "id": "13",
+        "src": "../images/timón.jpg",
+        "alt": "Peluche Timón orgánico",
+        "category": "peluches"
+    },
+    {
+        "id": "14",
+        "src": "../images/vestido.jpg",
+        "alt": "Vestido de bebé orgánico",
+        "category": "ropa"
+    }
+]

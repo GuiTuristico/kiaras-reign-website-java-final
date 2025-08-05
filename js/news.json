@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "title": "Nueva Colección 'Reino Selvagem'",
+        "date": "2025-07-28",
+        "summary": "Descubre los nuevos designs inspirados en la vida salvaje de la savana, con tejidos aún más suaves y estampas vibrantes.",
+        "image": "../images/news-wild-collection.jpeg",
+        "link": "#"
+    },
+    {
+        "id": 2,
+        "title": "Kiaras Reign en el Evento 'Eco Bebê 2025'",
+        "date": "2025-07-20",
+        "summary": "Estaremos presentes en la feria más grande de productos ecológicos para bebês, presentando nuestras inovaciones y workshops.",
+        "image": "../images/news-eco-event.jpeg",
+        "link": "#"
+    },
+    {
+        "id": 3,
+        "title": "Consejos para elegir Juguetes Ecológicos",
+        "date": "2025-07-15",
+        "summary": "Nuestro guía completo para papás que buscan opciones de juguetes sostenibles y seguros para el desarrollo de sus hijos.",
+        "image": "../images/news-eco-toys.jpeg",
+        "link": "#"
+    }
+]
